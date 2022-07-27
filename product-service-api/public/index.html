@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product List</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss/dist/tailwind.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mx-auto">
+      <pre
+        class="response-container text-white px-8 pt-6 pb-8 bg-black shadow-md invisible"
+      ></pre>
+    </div>
+
+    <script>
+      const responseContainer = document.querySelector(".response-container");
+      const loader = document.querySelector(".loader");
+      function renderResponse(res) {
+        responseContainer.textContent = JSON.stringify(res, null, 2);
+      }
+
+      const getApi = (endpoint) => {
+        console.log("Fetch Start", endpoint);
+        fetch(`/api/${endpoint}`)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (response) {
+            console.log("Fetch Success", response);
+            renderResponse(response);
+            responseContainer.classList.remove("invisible");
+          })
+          .catch(function (err) {
+            console.log("Fetch Error");
+            responseContainer.classList.remove("invisible");
+            responseContainer.textContent = "Error fetching";
+          })
+          .finally(function () {
+            console.log("Fetch Complete");
+          });
+      };
+
+      getApi("product");
+    </script>
+  </body>
+</html>
