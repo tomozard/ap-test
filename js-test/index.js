@@ -73,6 +73,9 @@ const generateCode = (data) => {
   return code1 + code2 + code3;
 };
 
-console.log(generateCode(data1));
-console.log(generateCode(data2));
-console.log(generateCode(data3));
+console.log(data1);
+console.log("Code : ", generateCode(data1), "\n");
+console.log(data2);
+console.log("Code : ", generateCode(data2), "\n");
+console.log(data3);
+console.log("Code : ", generateCode(data3), "\n");
